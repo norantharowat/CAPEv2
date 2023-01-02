@@ -29,6 +29,7 @@ from apiv2 import urls as apiv2
 from compare import urls as compare
 from dashboard import urls as dashboard
 from submission import urls as submission
+from createYara import urls as createYara
 
 handler403 = "web.views.handler403"
 handler404 = "web.views.handler404"
@@ -41,6 +42,7 @@ urlpatterns = [
     re_path(r"^analysis/", include(analysis)),
     re_path(r"^compare/", include(compare)),
     re_path(r"^submit/", include(submission)),
+    re_path(r"^createYara/", include(createYara)),
     re_path(r"^apiv2/", include(apiv2)),
     re_path(r"^file/(?P<category>\w+)/(?P<task_id>\d+)/(?P<dlfile>\w+)/$", analysis_views.file, name="file"),
     re_path(

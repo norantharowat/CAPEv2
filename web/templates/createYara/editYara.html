@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 999px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    background: red;
+    cursor: inherit;
+    display: block;
+}
+
+input[readonly] {
+    background-color: white !important;
+    cursor: text !important;
+}
+</style>
+<!-- <script type='text/javascript'>
+    $(document)
+        .on('click', '.cancle-btn', function(event) {
+
+            window.location.replace(window.location.origin + "/createYara/complete")
+            
+    });
+    
+</script> -->
+<div class="row">
+    <div class="col-md-6 col-md-offset-3 mx-auto">
+        <center><div style="margin-top: 20px;"> <h2>Post-process Yara rule for {{family_name}}</h2> </div></center>
+        <form role="form" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="tabbable">
+                
+                <div class="tab-content">
+                   
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="form_edited_yara">Please edit the created yara rule if needed</label>
+                            <textarea type="text" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' class="form-control" id="form_edited_yara" name="edited_yara" > {{rule}}</textarea>
+                        
+
+     
+                </div>
+            </div>
+            
+            
+            <center><div style="margin-top: 20px;">
+                
+                <input type="submit" value ="Sumbit changes" name="submit" class="btn btn-secondary btn-lg submit-btn"></input>
+                <input style="margin-left: 20px;" type="submit" value ="Submit without changes" name="cancel" class="btn btn-secondary btn-lg cancle-btn" ></input>
+            
+            </div></center>
+            <!-- <center><div style="margin-top: 20px;"><button type="button" class="btn btn-secondary btn-lg">Cancel</button></div></center> -->
+        </form>
+    </div>
+</div>
+{% endblock %}
