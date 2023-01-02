@@ -92,7 +92,7 @@ After installing CAPEv2 as mentioned in the main repository, you will have a use
 
 ## Create Yara rules with yarGen Demo
 
-![ZpyuluZg](https://user-images.githubusercontent.com/43759597/210273991-d3bddd01-51aa-434f-b2f1-02cdf60616f1.gif)
+[![Capture](https://user-images.githubusercontent.com/43759597/210274949-d06604ca-fa81-4b47-9ecf-58a6a8b1026f.PNG)](https://drive.google.com/file/d/1_5Vc4qnGL7EqeDJBtuONJD0xjJmNoZdZ/view?usp=sharing)
 
 ## Virtual Appliance
 
