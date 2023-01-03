@@ -1,0 +1,11 @@
+[Unit]
+Description=Custom Python Service
+Wants=cape-rooter.service
+After=cape-rooter.service
+[Service]
+WorkingDirectory=/opt/CAPEv2/data/
+ExecStart=/home/cape/.cache/pypoetry/virtualenvs/capev2-t2x27zRb-py3.10/bin/python update_yara.py
+User=cape
+Group=cape
+[Install]
+WantedBy=multi-user.target
