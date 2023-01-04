@@ -1,61 +1,81 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <script>
-    $(document)
-        .on('click', '#submit', function(event) {
-            
-             
-            document.getElementById('formfield').submit()
-            // window.location.replace(window.location.origin + "/createYara/viewYara")
-            
-    });
-   
+	function Validate(event) {
+		var check = confirm('Are you sure you want to delete the Yara rule?');
 
+		if (!check) {
+			event.preventDefault();
+		} else {
+			return check;
+		}
+	}
 </script>
 
 <div class="row">
-    <div class="col-md-6 col-md-offset-3 mx-auto">
-        <center><div style="margin-top: 20px;"> <h2>All Yara files created by YarGen</h2> </div></center>
-        
-        <table class="table table-bordered">
-            <caption>
-                Table to show the rules created by yarGen tool
-            </caption>
-            <thead>
-                <tr table style="width: 100%; text-align: left; background-color:grey">
-                    <th scope="col">Rule Name</th>
-    
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for rule in yara_files %}
-                <tr >
-                    <td>{{rule}} </td>
-    
-                    <td>
-                        <form id = "formfield"role="form" action="" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <input type="hidden" name = "file_name" value="{{rule}}" /> 
-                            <button
-                                
-                                class="btn btn-secondary view-yara"
-                                
-                                type="button"
-                               
-                                data-toggle="modal" data-target="#confirm-submit"
-                                
-                            >
-                                Delete
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+	<div class="col-md-6 col-md-offset-3 mx-auto">
+		<center>
+			<div style="margin-top: 20px">
+				<h2>All Yara files created by YarGen</h2>
+			</div>
+		</center>
 
-        <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<table class="table table-bordered">
+			<caption>
+				Table to show the rules created by yarGen tool
+			</caption>
+			<thead>
+				<tr table style="width: 100%; text-align: left; background-color: grey">
+					<th scope="col">Rule Name</th>
+
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for rule in yara_files %}
+
+				<tr>
+					<td>{{rule}}</td>
+
+					<td>
+						<form
+							id="formfield"
+							role="form"
+							action=""
+							method="post"
+							enctype="multipart/form-data"
+							onSubmit="return Validate(event);"
+						>
+							{% csrf_token %}
+							<input
+								id="{{rule}}"
+								type="hidden"
+								name="file_name"
+								value="{{rule}}"
+							/>
+							<button class="btn btn-secondary view-yara" type="submit">
+								Delete
+							</button>
+
+							<!-- <button
+                                
+                            class="btn btn-secondary view-yara"
+                            
+                            type="button"
+                            
+                           
+                            data-toggle="modal" data-target="#confirm-submit"
+                            
+                        >
+                            Delete 
+                        </button> -->
+						</form>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<!-- <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -64,7 +84,7 @@
                     <div class="modal-body">
                         Are you sure you want to delete the Yara rule?
         
-                        <!-- We display the details entered by the user here -->
+                        
                         
         
                     </div>
@@ -75,9 +95,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
+        </div> -->
+	</div>
 </div>
 
 {% endblock %}
